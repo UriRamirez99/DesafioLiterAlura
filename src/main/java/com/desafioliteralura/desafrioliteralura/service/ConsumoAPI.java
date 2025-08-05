@@ -8,7 +8,6 @@ import java.net.http.HttpResponse;
 
 public class ConsumoAPI {
     public String obtenerDatos(String url) {
-        // Agregar opción para seguir redirecciones
         HttpClient client = HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.ALWAYS)
                 .build();
