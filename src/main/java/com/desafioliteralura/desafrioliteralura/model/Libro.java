@@ -18,9 +18,8 @@ public class Libro {
     @Column(unique = true)
     private String titulo;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) // Asegura que el autor se guarde automáticamente
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL) 
     @JoinColumn(name = "autor_id")
-    //@Transient
     private Autor autor;
     @Enumerated(EnumType.STRING)
     private Genero genero;
@@ -33,11 +32,10 @@ public class Libro {
     public Libro(DatosLibro datosLibro) {
         this.libroId = datosLibro.libroId();
         this.titulo = datosLibro.titulo();
-        // Si autor es una lista de autores (como parece en tu registro DatosLibro)
         if (datosLibro.autor() != null && !datosLibro.autor().isEmpty()) {
-            this.autor = new Autor(datosLibro.autor().get(0)); // Toma el primer autor de la lista
+            this.autor = new Autor(datosLibro.autor().get(0));
         } else {
-            this.autor = null; // o maneja el caso de que no haya autor
+            this.autor = null; 
         }
         this.genero =  generoModificado(datosLibro.genero());
         this.idioma = idiomaModificado(datosLibro.idioma());
